@@ -10,7 +10,283 @@ body {
     min-height: 100vh;
     background-color: #1C1C22;
     font-family: "Outfit", sans-serif;
-    padding: 60px ;
+    
+}
+
+header{
+    position: relative;
+    height: 560px;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: #1C1C22;
+   
+    
+}
+
+.main-image{
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 30%;
+
+    opacity: 1;
+    z-index: -2;
+    
+}
+
+header::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(28, 28, 34, 0.10) 0%,
+        rgba(28, 28, 34, 0.15) 30%,
+        rgba(28, 28, 34, 0.35) 50%,
+        rgba(28, 28, 34, 0.65) 65%,
+        rgba(28, 28, 34, 0.88) 78%,
+        #1C1C22 100%
+    );
 }
 
 
+header::after{
+       content: "";
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 300px;
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(28, 28, 34, 0.15) 25%,
+        rgba(28, 28, 34, 0.55) 60%,
+        #1C1C22 100%
+    );
+
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.15) 20%,
+        black 65%
+    );
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.15) 20%,
+        black 65%
+    );
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+
+.game-details {
+    width: min(1400px, calc(100% - 80px));
+    margin: 0 auto;
+    padding: 20px 0 60px;
+    padding-right: 100px;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 48px;
+    align-items: start;
+
+    background-color: #1C1C22;
+    color: #ffffff;
+
+}
+
+.game-content {
+    min-width: 0;
+
+}
+
+.main-title {
+    padding: 20px 0 40px;
+}
+
+.main-title h1 {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    color: #E63946;
+    font-size: 90px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.controler-icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding-top: 20px;
+}
+
+.controler-icon svg {
+    width: 72px;
+    height: 72px;
+}
+
+
+.main-title h2 {
+    font-size: 32px;
+    color: #A7A7B3;
+    font-weight: 400;
+}
+
+.game-description h3 {
+    margin-bottom: 30px;
+    font-size: 52px;
+    color: #F5F5F7;
+}
+
+.game-description p {
+    font-size: 36px;
+    line-height: 1.8;
+    color: #C7C7D1;
+    margin-bottom: 30px;
+}
+
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    min-width: 0;
+    padding-top: 40px;
+    padding-left: 40px;
+}
+
+.info-card {
+    padding: 24px;
+    background-color: #25252D;
+    border: 1px solid #35353F;
+    border-radius: 14px;
+    min-height: 600px;
+    max-height: fit-content;
+    width: 450px;
+    
+}
+
+.info-card img{
+    max-width: 400px;
+    max-height: 300px;
+    border-radius: 20px;
+    padding-bottom: 24px;
+}
+
+.info-card > h2 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+
+.info-item {
+    padding: 16px 0;
+    border-bottom: 1px solid #393943;
+}
+
+.info-item:first-of-type {
+    padding-top: 0;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.info-item h3 {
+    padding-bottom: 8px;
+    font-size: 36px;
+    font-weight: 500;
+    color: #F5F5F7;
+}
+
+.info-item p {
+    font-size: 26px;
+    line-height: 1.6;
+    color: #A7A7B3;
+    overflow-wrap: anywhere;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 10px;
+
+    color: #E63946;
+    text-decoration: none;
+    font-size: 36px;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+}
+
+.back-link span {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.back-link:hover {
+    color: #FF737D;
+}
+
+@media (max-width: 900px) {
+    .game-details {
+        width: calc(100% - 40px);
+        grid-template-columns: minmax(0, 1fr) 260px;
+        gap: 28px;
+    }
+
+    .game-content {
+        padding-left: 0;
+    }
+
+    .game-description p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 650px) {
+    .game-details {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .sidebar {
+        padding-top: 0;
+    }
+
+    .main-title h1 {
+        gap: 8px;
+        font-size: 32px;
+    }
+
+    .controler-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .game-description h3 {
+        font-size: 26px;
+    }
+}
