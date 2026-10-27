@@ -289,3 +289,20 @@ header::after{
         font-size: 26px;
     }
 }
+
+
+footer{
+    width: 100%;
+    max-width: 900px;
+    margin-inline: auto;
+  
+    align-items: center;
+    color: #F5F5F7;
+    font-weight: 300;
+    font-size: 28px;
+}
+  
+footer a{
+    color:#E63946
+  
+}
