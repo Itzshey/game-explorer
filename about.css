@@ -249,6 +249,29 @@ header::after{
     color: #FF737D;
 }
 
+footer{
+    width: 100%;
+    max-width: 900px;
+    margin-inline: auto;
+  
+    align-items: center;
+    color: #F5F5F7;
+    font-weight: 300;
+    font-size: 28px;
+    
+}
+  
+.rawg-api-link {
+    color:#E63946;
+    transition: color 0.2s ease;
+  
+}
+
+.rawg-api-link:hover {
+    color: #FF737D;
+}
+
+
 @media (max-width: 900px) {
     .game-details {
         width: calc(100% - 40px);
