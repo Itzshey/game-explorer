@@ -1,4 +1,4 @@
-
+const searchInput = document.getElementById('game-search');
 const gameList = document.querySelector('#game-list');
 
 async function getTrendingGames() {
@@ -10,6 +10,22 @@ async function getTrendingGames() {
 
     return await response.json();
 }
+
+async function getSearchedGame(searchTerm) {
+    if (!searchTerm) {
+        return [];
+    }
+
+    const url = `/api/search?search=${encodeURIComponent(searchTerm)}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error('Failed to load games');
+    }
+
+    return await response.json();
+}
+
 
 function createGameCard(game) {
 
@@ -111,4 +127,43 @@ async function renderTrendingGames() {
     }
 }
 
+
+async function renderSearchedGame(searchTerm) {
+    gameList.textContent = 'Searching games...';
+
+    try {
+        const searchResult = await getSearchedGame(searchTerm);
+
+        gameList.replaceChildren();
+
+        if (searchResult.length === 0) {
+            gameList.textContent = 'No games found.';
+            return;
+        }
+
+        const cards = searchResult.map(createGameCard);
+        gameList.append(...cards);
+
+    } catch (error) {
+        console.error('Error searching games:', error);
+
+        gameList.textContent =
+            'Could not load games. Please try again later.';
+    }
+}
+
+searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+
+        const searchTerm = searchInput.value.trim();
+
+        if (searchTerm) {
+            renderSearchedGame(searchTerm);
+        }
+    }
+});
+
 renderTrendingGames();
+
+

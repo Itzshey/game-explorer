@@ -19,8 +19,9 @@ app.get('/api/trending', async (req, res) => {
 
         const url = new URL('https://api.rawg.io/api/games');
         url.searchParams.set('key', apiKey);
-        url.searchParams.set('page_size', '9');
+        url.searchParams.set('page_size', '12');
         url.searchParams.set('ordering', '-added');
+        
 
         const response = await fetch(url);
 
@@ -66,8 +67,10 @@ app.get('/api/search', async (req, res) => {
         const url = new URL('https://api.rawg.io/api/games');
         url.searchParams.set('key', apiKey);
         url.searchParams.set('search', searchTerm);
-        url.searchParams.set('page_size', '9');
+        url.searchParams.set('search_precise', true);
+        url.searchParams.set('page_size', '12');
         url.searchParams.set('ordering', '-added');
+
 
         const response = await fetch(url);
 
