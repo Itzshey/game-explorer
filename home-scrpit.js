@@ -12,11 +12,11 @@ async function getTrendingGames() {
 }
 
 function createGameCard(game) {
-    // Card principal
+
     const card = document.createElement('article');
     card.classList.add('game-cards');
 
-    // Capa
+ 
     const cover = document.createElement('img');
     cover.classList.add('game-cover');
     cover.src = game.background_image || '';
@@ -27,7 +27,7 @@ function createGameCard(game) {
         cover.style.display = 'none';
     });
 
-    // Informações do jogo
+  
     const info = document.createElement('div');
     info.classList.add('game-info');
 
@@ -46,7 +46,7 @@ function createGameCard(game) {
 
     basicInfo.append(name, genre);
 
-    // Informações extras
+
     const extraInfo = document.createElement('div');
     extraInfo.classList.add('game-info-extra');
 
@@ -65,7 +65,6 @@ function createGameCard(game) {
     );
     addDetail(extraInfo, 'Tags', tags);
 
-    // Link individual para cada jogo
     const detailsLink = document.createElement('a');
     detailsLink.classList.add('details-link');
     detailsLink.href = `about.html?id=${game.id}`;
