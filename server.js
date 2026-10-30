@@ -90,3 +90,31 @@ app.get('/api/search', async (req, res) => {
         });
     }
 });
+
+app.get('api/games/id:', async (req, res) => {
+
+    try{
+        const { id } = req.params;
+
+        const response = await fetch(
+            `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
+        );
+
+        if (!response.ok) {
+            return res.status(response.status).json({
+                error: 'Failed to load game details'
+            });
+        }
+
+        const game = await response.json();
+
+        res.json(game);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Internal server error'
+    });
+    
+    }
+});
