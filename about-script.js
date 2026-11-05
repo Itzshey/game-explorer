@@ -1,6 +1,25 @@
+const params = new URLSearchParams(window.location.search);
+const gameId = params.get('id');
+
+
+async function getGameDetails(id) {
+
+    if (!id) {
+        throw new Error('Game ID not found');
+    }
+
+    const response = await fetch(`/api/games/${encodeURIComponent(id)}`);
+
+    if (!response.ok) {
+        throw new Error('Failed to load game details');
+    }
+
+    return await response.json();
+}
+
+
 function createGameInfo(game){
 
-    
     const header = document.createElement('header');
 
     const coverImg = document.createElement('img');
@@ -85,18 +104,12 @@ function createGameInfo(game){
     aboutGameTitle.textContent = "About the game";
     const aboutGame = document.createElement('p');
     aboutGame.id = 'about-desc';
-    aboutGame.textContent = game.description || 'Description unavailable.';
+    aboutGame.textContent = cleanDescription(game.description);
     const requirementsTitle = document.createElement('h3');
-    requirementsTitle.textContent = "Requirements";
-    const requirements = document.createElement('p');
-    requirements.id = 'about-req';
-    requirements.textContent = game.requirements;
 
     gameDescription.append(
         aboutGameTitle,
         aboutGame,
-        requirementsTitle,
-        requirements
     );
 
     gameContent.append(mainTitle, gameDescription);
@@ -170,7 +183,13 @@ function createGameInfo(game){
     document.querySelector('header')?.remove();
     document.querySelector('main.game-details')?.remove();
 
-    document.body.append(header, main);
+    const footer = document.querySelector('footer');
+
+    if (footer) {
+        footer.before(header, main);
+    } else {
+        document.body.append(header, main);
+    }
 
 }
 
@@ -189,3 +208,38 @@ function createInfoItem(title, value) {
 
     return infoItem;
 }
+
+function cleanDescription(description) {
+    if (!description) {
+        return 'Description unavailable.';
+    }
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(description, 'text/html');
+
+    return doc.body.textContent.trim();
+}
+
+async function loadGameDetails() {
+
+    try {
+
+        const game = await getGameDetails(gameId);
+
+        createGameInfo(game);
+
+        document.title = `${game.name} | Game Explorer`;
+
+    } catch (error) {
+
+        console.error('Error loading game details:', error);
+
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent =
+            'Could not load game information. Please try again later.';
+
+        document.body.appendChild(errorMessage);
+    }
+}
+
+loadGameDetails();

@@ -5,7 +5,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.static('.'));
-//Makes the static files available.
+
 
 app.get('/api/trending', async (req, res) => {
     try {
@@ -24,11 +24,12 @@ app.get('/api/trending', async (req, res) => {
         
 
         const response = await fetch(url);
+        
 
         if (!response.ok) {
             return res.status(response.status).json({
                 error: 'Failed to fetch games from RAWG'
-            });
+                });
         }
 
         const data = await response.json();
@@ -91,16 +92,31 @@ app.get('/api/search', async (req, res) => {
     }
 });
 
-app.get('api/games/id:', async (req, res) => {
-
-    try{
+app.get('/api/games/:id', async (req, res) => {
+    try {
         const { id } = req.params;
+        const apiKey = process.env.API_KEY;
 
-        const response = await fetch(
-            `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
-        );
+        console.log('Requesting game ID:', id);
+
+        if (!apiKey) {
+            return res.status(500).json({
+                error: 'API key not configured'
+            });
+        }
+
+        const url = new URL(`https://api.rawg.io/api/games/${id}`);
+        url.searchParams.set('key', apiKey);
+
+        const response = await fetch(url);
+
+        console.log('RAWG status:', response.status);
 
         if (!response.ok) {
+            const errorDetails = await response.text();
+
+            console.error('RAWG response error:', errorDetails);
+
             return res.status(response.status).json({
                 error: 'Failed to load game details'
             });
@@ -111,10 +127,10 @@ app.get('api/games/id:', async (req, res) => {
         res.json(game);
 
     } catch (error) {
-        console.error(error);
+        console.error('Backend error:', error);
+
         res.status(500).json({
             error: 'Internal server error'
-    });
-    
+        });
     }
 });
