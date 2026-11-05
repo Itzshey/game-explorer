@@ -19,6 +19,7 @@ Here are the core features:
 ---
 ## What I learned ‧₊˚🖇️✩ ₊˚📖
 This project was my first time manipulating API's! I taught me how requests http work and gave me a deeper understanding on backend! It also taught me a lot more about css and how to make pages interactive!
+
 ---
 
  DATA FROM: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwien5WZ1_GXAxWhlZUCHcNUDzUQFnoECDEQAQ&url=https%3A%2F%2Frawg.io%2Ftldr&usg=AOvVaw1gb8Qk1eNI5ijADA946Tut&opi=89978449
