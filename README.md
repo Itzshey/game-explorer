@@ -18,8 +18,8 @@ Here are the core features:
    - About page when you click the cards, showing a more in-depth view of the games, containg about the game, plublisher, release date and more!
 ---
 ## Screenshots ⸜(｡ •̀  ᵕ 📷) ✧
-<img width="600" height="300" alt="Image" src="https://github.com/user-attachments/assets/dd9d583a-a4fb-45c6-9faa-25546d4562e6" />
-<img width="400" height="300" alt="Image" src="https://github.com/user-attachments/assets/dbaa4d0a-e448-4f6e-b01c-e49c391e4095" />
+<img width="600" height="320" alt="Image" src="https://github.com/user-attachments/assets/dd9d583a-a4fb-45c6-9faa-25546d4562e6" />
+<img width="400" height="320" alt="Image" src="https://github.com/user-attachments/assets/dbaa4d0a-e448-4f6e-b01c-e49c391e4095" />
 
 ## What I learned ‧₊˚🖇️✩ ₊˚📖
 This project was my first time manipulating API! It taught me how HTTP requests work and gave me a deeper understanding of backend development! It also taught me a lot more about css and how to make pages interactive!
